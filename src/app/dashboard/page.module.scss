@@ -1,0 +1,110 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 10vh;
+  background-color: white;
+}
+
+.heading {
+  font-size: 2.5rem;
+  color: black;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.emptyMessage {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.tasksButton {
+  display: block;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  border: 2px dashed black;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tasksButton:hover {
+  background-color: black;
+  color: white;
+  border-style: solid;
+  transform: translateY(-2px);
+}
+
+.taskCard {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 15px;
+  border: 2px dashed black;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+
+  &.removing {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.taskTitle {
+  font-size: 1.2rem;
+  color: black;
+  margin: 0;
+  flex: 1;
+}
+
+.completeButton {
+  padding: 0.5rem 1rem;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  border: 2px dashed black;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.completeButton:hover {
+  background-color: black;
+  color: white;
+  border-style: solid;
+  transform: scale(1.05);
+}
+
+@keyframes fadeOutScale {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    height: auto;
+    margin-bottom: 1.5rem;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+    height: 0;
+    margin-bottom: 0;
+    padding: 0;
+  }
+}
+
+.removing {
+  animation: fadeOutScale 0.4s ease forwards;
+  overflow: hidden;
+}
