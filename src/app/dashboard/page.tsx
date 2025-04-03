@@ -33,11 +33,16 @@ export default function Dashboard() {
           setRemovingTask('');
         }, 400); 
       };
-      
+      const handleRestart = () => {
+        localStorage.removeItem('selectedTasks');
+        router.push('/tasks');
+      };
 
       return (
         <div className={styles.pageWrapper}>
+          <button className={styles.restartButton} onClick={handleRestart}>🔁 Restart Day </button>
           <div className={styles.container}>
+          
             <h1 className={styles.heading}>Hey, {username} here is your Dashboard</h1>
       
             {tasks.length === 0 ? (
@@ -69,6 +74,7 @@ export default function Dashboard() {
                 </div>
               ))
             )}
+            
           </div>
         </div>
       );

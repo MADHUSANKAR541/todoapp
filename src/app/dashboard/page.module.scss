@@ -2,8 +2,16 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
+  padding-top: 4rem; // Add this
   min-height: 10vh;
+  position: relative;
   background-color: white;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-top: 5rem;
+  }
 }
 
 .heading {
@@ -108,3 +116,28 @@
   animation: fadeOutScale 0.4s ease forwards;
   overflow: hidden;
 }
+
+.restartButton {
+  position: fixed;
+  top: 1rem;
+  right: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  border: 2px dashed black;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1000;
+}
+
+.restartButton:hover {
+  background-color: black;
+  color: white;
+  border-style: solid;
+  transform: translateY(-2px);
+}
+
+

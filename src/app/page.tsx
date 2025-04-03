@@ -1,5 +1,5 @@
 'use client';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import styles from './page.module.scss';
 
@@ -7,7 +7,18 @@ import styles from './page.module.scss';
 export default function Homepage(){
   const [name,setname]=useState('');
   const router = useRouter();
-  
+
+  useEffect(() => {
+    const storedName = localStorage.getItem('username');
+    const selectedTasks = JSON.parse(localStorage.getItem('selectedTasks') || '[]');
+
+    if (storedName){
+      router.push('/tasks');
+    }
+    if (selectedTasks.length > 0) {
+      router.push('/dashboard');
+    }
+  }, []);
   const handlesubmit=()=>{
     if (name.trim()!=''){
         
