@@ -17,7 +17,7 @@ export default function TaskPage() {
   const username = user?.firstName || 'there';  // Default to "there" if no name found
 
   const tasks = [
-    "Write", "Meditate", "Cook", "Organize", "Journal", "Exercise", "Learn", "Plan", "Walk", "Paint", "Declutter", "Stretch", "Code", "Listen"
+    "Write", "Meditate", "Cook","Exercise", "Learn", "Walk", "Code"
   ];
 
   const handleAddTask = (task: string) => {
