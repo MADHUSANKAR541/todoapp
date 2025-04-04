@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
-import { Merriweather } from "next/font/google";
-import "./globals.scss";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
 
-const merriweather = Merriweather({
-  subsets: ["latin"],
-  weight: ["300", "400", "700"],
-  variable: "--font-merriweather",
-});
+
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,13 +22,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
-      <body className={merriweather.variable}>
+      <body >
         {children}
       </body>
     </html>
+    </ClerkProvider>
   );
 }

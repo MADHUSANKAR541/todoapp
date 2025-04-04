@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import styles from "./page.module.scss";
 import { useWindowSize } from 'react-use';
 import Confetti from 'react-confetti';
+import Sidebar from '@/components/sidebar';
 
 
 
@@ -40,10 +41,11 @@ export default function Dashboard() {
 
       return (
         <div className={styles.pageWrapper}>
+          <Sidebar/>
           <button className={styles.restartButton} onClick={handleRestart}>🔁 Restart Day </button>
           <div className={styles.container}>
           
-            <h1 className={styles.heading}>Hey, {username} here is your Dashboard</h1>
+            <h1 className={styles.heading}>Here is your Dashboard</h1>
       
             {tasks.length === 0 ? (
               <>

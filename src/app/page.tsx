@@ -1,45 +1,26 @@
 'use client';
-import { useState,useEffect } from "react";
-import { useRouter } from 'next/navigation';
 import styles from './page.module.scss';
+import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
+import Sidebar from '@/components/sidebar';
+const AnimatedBackground = dynamic(() => import('./back'), { ssr: false });
 
-
-export default function Homepage(){
-  const [name,setname]=useState('');
+export default function WelcomePage() {
   const router = useRouter();
 
-  useEffect(() => {
-    const storedName = localStorage.getItem('username');
-    const selectedTasks = JSON.parse(localStorage.getItem('selectedTasks') || '[]');
+  const handleSignIn = () => router.push('/sign-in?redirect_url=/tasks');
+  const handleSignUp = () => router.push('/sign-up?redirect_url=/tasks');
 
-    if (storedName){
-      router.push('/tasks');
-    }
-    if (selectedTasks.length > 0) {
-      router.push('/dashboard');
-    }
-  }, []);
-  const handlesubmit=()=>{
-    if (name.trim()!=''){
-        
-      localStorage.setItem('username',name)
-      router.push("/tasks");
-    }
-  };
-
-  return(
+  return (
     <div className={styles.container}>
-      <h1 className={styles.heading}>Welcome to Your To-Do App</h1>
-      <input
-      className={styles.input}
-        type="text"
-        placeholder="Enter your name"
-        value={name}
-        onChange={(e) => setname(e.target.value)}
-      />
-      <button onClick={handlesubmit} className={styles.button}>
-        Start My Day
-      </button>
+      <Sidebar/>
+      <h1 className={styles.heading}>Welcome to Your Day!</h1>
+
+      <div className={styles.buttonWrapper}>
+        <button className={styles.authButton} onClick={handleSignIn}>Sign In</button>
+        <button className={styles.authButton} onClick={handleSignUp}>Sign Up</button>
+      </div>
+      <AnimatedBackground/> 
     </div>
   );
 }

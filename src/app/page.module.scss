@@ -4,48 +4,55 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  gap: 1.5rem;
-  background-color: white;
-}
-
-.heading {
-  font-size: 2rem;
-  font-weight: 700;
-  color: black;
+  padding: 2rem;
+  position: relative;
   text-align: center;
 }
 
-.input {
-  padding: 0.6rem 1rem;
-  font-size: 1rem;
-  border: 2px dashed black;
-  border-radius: 8px;
-  background-color: white;
-  color: black;
-  width: 250px;
-  outline: none;
-  transition: border 0.2s ease;
-}
-
-.input:focus {
-  border-style: solid;
-}
-
-.button {
-  padding: 0.6rem 1.5rem;
-  font-size: 1rem;
-  border: 2px dashed black;
-  border-radius: 8px;
-  background-color: white;
+.heading {
+  font-size: 2.5rem;
   color: black;
   font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  margin-bottom: 2rem;
+  letter-spacing: 1px; /* Slightly increase letter spacing */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow */
 }
 
-.button:hover {
-  background-color: black;
-  color: white;
-  border-style: solid;
-  transform: translateY(-3px);
+.buttonWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.authButton {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  border: 2px dashed black;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: black;
+    color: white;
+    border-style: solid;
+    transform: translateY(-3px) scale(1.05); /* Slight bounce effect */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(2deg); }
+  50% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.authButton:hover {
+  animation: wiggle 0.3s ease-in-out;
 }
