@@ -1,37 +1,49 @@
-'use client';
-import { useState } from 'react';
-import styles from './sidebar.module.scss';
-import { useRouter } from 'next/navigation';
+"use client";
+import { useState } from "react";
+import styles from "./sidebar.module.scss";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@clerk/nextjs"; // ✅ Use `useAuth` instead of `useSignOut`
 
 export default function Sidebar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const router = useRouter();
+  const { signOut } = useAuth(); // ✅ Get the signOut function from Clerk
+
+  const handleLogout = async () => {
+    try {
+      await signOut(); // ✅ Correct way to log out
+      localStorage.clear(); // ✅ Clears stored data
+      router.replace("/"); // ✅ Redirect to login page
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   return (
     <>
       {/* Hamburger Menu Button */}
-      <button 
-        className={styles.hamburger} 
-        onClick={() => setIsNavOpen(!isNavOpen)} 
+      <div
+        className={styles.hamburger}
+        onClick={() => setIsNavOpen(!isNavOpen)}
         aria-label="Toggle navigation menu"
       >
         ☰
-      </button>
+      </div>
 
       {/* Sidebar */}
-      <nav className={`${styles.sidebar} ${isNavOpen ? styles.open : ''}`} role="navigation">
-        <button 
-          className={styles.closeButton} 
-          onClick={() => setIsNavOpen(false)} 
+      <nav className={`${styles.sidebar} ${isNavOpen ? styles.open : ""}`} role="navigation">
+        <div
+          className={styles.closeButton}
+          onClick={() => setIsNavOpen(false)}
           aria-label="Close navigation menu"
         >
           ✖
-        </button>
+        </div>
         <ul>
-          <li><a onClick={() => router.push('/dashboard')}>Dashboard</a></li>
-          <li><a onClick={() => router.push('/tasks')}>My Tasks</a></li>
-          <li><a onClick={() => router.push('/settings')}>Settings</a></li>
-          <li><a onClick={() => router.push('/logout')}>Logout</a></li>
+          <li onClick={() => router.push("/dashboard")}>Dashboard</li>
+          <li onClick={() => router.push("/tasks")}>My Tasks</li>
+          <li onClick={() => router.push("/settings")}>Settings</li>
+          <li onClick={handleLogout} className={styles.logout}>Logout</li>
         </ul>
       </nav>
     </>
