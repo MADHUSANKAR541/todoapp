@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import styles from './Sidebar.module.scss';
+import styles from './sidebar.module.scss';
 
 export default function Sidebar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
