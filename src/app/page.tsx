@@ -2,7 +2,6 @@
 import styles from './page.module.scss';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
-import Sidebar from '@/components/sidebar';
 const AnimatedBackground = dynamic(() => import('./back'), { ssr: false });
 
 export default function WelcomePage() {
@@ -13,9 +12,7 @@ export default function WelcomePage() {
 
   return (
     <div className={styles.container}>
-      <Sidebar/>
       <h1 className={styles.heading}>Welcome to Your Day!</h1>
-
       <div className={styles.buttonWrapper}>
         <button className={styles.authButton} onClick={handleSignIn}>Sign In</button>
         <button className={styles.authButton} onClick={handleSignUp}>Sign Up</button>
