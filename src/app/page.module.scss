@@ -7,6 +7,7 @@
   padding: 2rem;
   position: relative;
   text-align: center;
+  z-index: 1;
 }
 
 .heading {
@@ -14,8 +15,8 @@
   color: black;
   font-weight: 700;
   margin-bottom: 2rem;
-  letter-spacing: 1px; /* Slightly increase letter spacing */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .buttonWrapper {
@@ -40,8 +41,9 @@
     background-color: black;
     color: white;
     border-style: solid;
-    transform: translateY(-3px) scale(1.05); /* Slight bounce effect */
+    transform: translateY(-3px) scale(1.05);
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    animation: wiggle 0.3s ease-in-out;
   }
 }
 
@@ -53,18 +55,4 @@
   100% { transform: rotate(0deg); }
 }
 
-.authButton:hover {
-  animation: wiggle 0.3s ease-in-out;
-}
-@media (max-width: 768px) {
-  .container {
-    padding: 9rem;
-    height: auto;
-  }
 
-  .buttonWrapper {
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-  }
-}
