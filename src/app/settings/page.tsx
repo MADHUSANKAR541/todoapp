@@ -14,7 +14,7 @@ export default function Settings() {
   const handleLogout = async () => {
     await signOut();
     localStorage.clear();
-    router.replace("/");
+    router.push("/");
   };
 
   return (

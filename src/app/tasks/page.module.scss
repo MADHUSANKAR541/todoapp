@@ -176,3 +176,25 @@
 .taskItem button:active {
   transform: scale(0.95);
 }
+@media (max-width: 768px) {
+  .continueWrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 90%;
+    background: white;
+    padding: 0.75rem 1rem;
+    border-top: 2px dashed black;
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
+    z-index: 999;
+  }
+
+  .button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1rem;
+    margin: 0;
+  }
+}

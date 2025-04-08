@@ -56,3 +56,15 @@
 .authButton:hover {
   animation: wiggle 0.3s ease-in-out;
 }
+@media (max-width: 768px) {
+  .container {
+    padding: 9rem;
+    height: auto;
+  }
+
+  .buttonWrapper {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+}
