@@ -1,12 +1,13 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { useUser } from '@clerk/nextjs';  // Import Clerk hook
+import { useUser, UserButton } from '@clerk/nextjs';  // Import Clerk hook
 import { useRouter } from 'next/navigation';
 import styles from './page.module.scss';
 import Sidebar from '@/components/sidebar';
+import Loading from '@/components/loading';  // Corrected import path for loading component
 
 export default function TaskPage() {
-  const { user } = useUser();  // Get user data from Clerk
+  const { user, isLoaded } = useUser();  // Get user data and isLoaded status from Clerk
   const [selectedTask, setSelectedTask] = useState<string[]>([]);
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [showCustomTaskPopup, setShowCustomTaskPopup] = useState(false);
@@ -14,10 +15,10 @@ export default function TaskPage() {
   const router = useRouter();
 
   // Use user data from Clerk
-  const username = user?.firstName || 'there';  // Default to "there" if no name found
+  const username = user?.firstName || "there";  // Default to "there" if no name found
 
   const tasks = [
-    "Write", "Meditate", "Cook","Exercise", "Learn", "Walk", "Code"
+    "Write", "Meditate", "Cook", "Exercise", "Learn", "Walk", "Code"
   ];
 
   const handleAddTask = (task: string) => {
@@ -42,9 +43,29 @@ export default function TaskPage() {
     router.push('/dashboard');
   };
 
+  if (!isLoaded) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <Loading />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container}>
-      <Sidebar/>
+      <div className={styles.userButtonWrapper}>
+        <UserButton
+          appearance={{
+            elements: {
+              userButtonAvatarBox: {
+                width: '48px',
+                height: '48px',
+              },
+            },
+          }}
+        />
+      </div>
+      <Sidebar />
       {feedbackMessage && <div className={styles.popup}>{feedbackMessage}</div>}
 
       <h1 className={styles.heading}>Hey {username}, what would you like to do today?</h1>

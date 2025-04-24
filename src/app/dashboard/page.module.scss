@@ -1,34 +1,46 @@
+/* Ensures the page takes full viewport height and width */
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;   /* Full viewport height */
+  width: 100vw;    /* Full viewport width */
+  position: relative; /* Allow confetti to cover full page */
+}
+
+/* Container for dashboard content */
 .container {
-  max-width: 800px;
-  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 2rem;
-  padding-top: 4rem; // Add this
-  min-height: 10vh;
   position: relative;
   background-color: white;
+  overflow: hidden;
+  z-index: 2;  /* Ensure content stays above the confetti */
 }
 
-@media (max-width: 480px) {
-  .container {
-    padding-top: 5rem;
-  }
-}
-
+/* Main heading */
 .heading {
   font-size: 2.5rem;
   color: black;
   margin-bottom: 2rem;
   text-align: center;
   font-weight: 700;
+  z-index: 3; /* Ensure heading is above the confetti */
 }
 
+/* Empty message when no tasks are present */
 .emptyMessage {
   text-align: center;
   font-size: 1.5rem;
   color: #555;
   margin-bottom: 2rem;
+  z-index: 3; /* Ensure the message is above the confetti */
 }
 
+/* Button for navigating to tasks page */
 .tasksButton {
   display: block;
   margin: 0 auto;
@@ -41,6 +53,7 @@
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
+  z-index: 3; /* Ensure button is above the confetti */
 }
 
 .tasksButton:hover {
@@ -50,6 +63,7 @@
   transform: translateY(-2px);
 }
 
+/* Task card style */
 .taskCard {
   background: white;
   padding: 1.5rem;
@@ -60,7 +74,8 @@
   justify-content: space-between;
   align-items: center;
   transition: all 0.3s ease;
-
+  width: 100%;
+  max-width: 400px;
   &.removing {
     transform: translateX(100%);
     opacity: 0;
@@ -71,7 +86,9 @@
   }
 }
 
-.taskTitle {
+  /* Make task cards responsive */
+
+.taskCard .taskTitle {
   font-size: 1.2rem;
   color: black;
   margin: 0;
@@ -96,6 +113,16 @@
   transform: scale(1.05);
 }
 
+/* Confetti effect should fill the full screen */
+.confettiWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1; /* Ensure it stays behind content */
+}
+
 @keyframes fadeOutScale {
   0% {
     opacity: 1;
@@ -116,7 +143,7 @@
   animation: fadeOutScale 0.4s ease forwards;
   overflow: hidden;
 }
-
+/* Restart button styles */
 .restartButton {
   position: fixed;
   top: 1rem;
@@ -130,7 +157,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  z-index: 1000;
+  z-index: 1000; /* Ensure it is above all content */
 }
 
 .restartButton:hover {
@@ -140,4 +167,35 @@
   transform: translateY(-2px);
 }
 
+/* Responsive behavior for small screens */
+@media (max-width: 768px) {
+  .heading {
+    font-size: 2rem; /* Slightly smaller heading */
+  }
+
+  .tasksButton {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem; /* Adjust button size */
+  }
+
+  .taskCard {
+    padding: 1rem;
+    max-width: 100%; /* Make task cards fill available space */
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 1.5rem; /* Adjust heading size for smaller screens */
+  }
+
+  .tasksButton {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem; /* Further adjust button size */
+  }
+  .taskCard {
+    padding: 0.8rem;
+    max-width: 80%; /* Ensure task cards are responsive */
+  }
+}
 

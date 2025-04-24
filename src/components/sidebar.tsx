@@ -40,6 +40,7 @@ export default function Sidebar() {
           ✖
         </div>
         <ul>
+        <li onClick={() => router.push( "/profile")}>Profile</li>
           <li onClick={() => router.push("/dashboard")}>Dashboard</li>
           <li onClick={() => router.push("/tasks")}>My Tasks</li>
           <li onClick={() => router.push("/settings")}>Settings</li>
