@@ -8,25 +8,25 @@ const AnimatedBackground = dynamic(() => import('./back'), { ssr: false });
 
 export default function WelcomePage() {
   const router = useRouter();
-  const { isSignedIn } = useUser();
+  const { isSignedIn, isLoaded } = useUser(); // ✅ use isLoaded to prevent premature redirect
+
   useEffect(() => {
+    if (!isLoaded) return; // ⏳ Wait for auth to load
+
     if (isSignedIn) {
-      // Fetch selectedTasks from localStorage
       const selectedTasks = JSON.parse(localStorage.getItem("selectedTasks") || "[]");
 
       console.log("User is signed in.");
       console.log("Selected Tasks:", selectedTasks);
 
-      // Redirect based on selectedTasks array
       if (selectedTasks.length === 0) {
-        router.replace("/tasks"); // Redirect to tasks page if empty
+        router.replace("/tasks");
       } else {
-        router.replace("/dashboard"); // Redirect to dashboard if tasks exist
+        router.replace("/dashboard");
       }
     }
-  }, [isSignedIn, router]);
+  }, [isSignedIn, isLoaded, router]);
 
- 
   const handleSignIn = () => router.push('/sign-in?redirect_url=/tasks');
   const handleSignUp = () => router.push('/sign-up?redirect_url=/tasks');
 
@@ -37,7 +37,7 @@ export default function WelcomePage() {
         <button className={styles.authButton} onClick={handleSignIn}>Sign In</button>
         <button className={styles.authButton} onClick={handleSignUp}>Sign Up</button>
       </div>
-      <AnimatedBackground/> 
+      <AnimatedBackground />
     </div>
   );
 }
