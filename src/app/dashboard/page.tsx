@@ -49,7 +49,7 @@ export default function Dashboard() {
     setTimeout(() => {
       router.push('/tasks'); // Navigate to the tasks page
       setIsRestartLoading(false); // Stop pencil loading after 3 seconds
-    }, 50000); // 3-second delay for the pencil loading animation
+    }, 5000); // 3-second delay for the pencil loading animation
   };
 
   const handletask = () => {

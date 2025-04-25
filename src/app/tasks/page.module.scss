@@ -19,53 +19,7 @@
   font-weight: 700;
   color: black;
   margin-bottom: 2rem;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid black;  /* Cursor effect */
-  width: 0;
-  animation: typing 3s steps(30) forwards, blink-caret 0.75s step-end infinite;
 }
-
-@keyframes typing {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
-@keyframes blink-caret {
-  50% {
-    border-color: transparent;
-  }
-}
-
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-  .heading {
-    font-size: 1.75rem;
-  }
-}
-
-@media (max-width: 992px) {
-  .heading {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .heading {
-    font-size: 1.25rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .heading {
-    font-size: 1rem;
-  }
-}
-
 
 .popup {
   position: fixed;
