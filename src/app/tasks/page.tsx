@@ -12,14 +12,37 @@ export default function TaskPage() {
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [showCustomTaskPopup, setShowCustomTaskPopup] = useState(false);
   const [customTask, setCustomTask] = useState('');
+  const [tasks, setTasks] = useState<string[]>([]);
   const router = useRouter();
 
   // Use user data from Clerk
   const username = user?.firstName || "there";  // Default to "there" if no name found
 
-  const tasks = [
-    "Write", "Meditate", "Cook", "Exercise", "Learn", "Walk", "Code"
-  ];
+  useEffect(() => {
+    const allPossibleTasks = [
+      "Sketch", "Read", "Sing", "Stretch", "Journal", "Clean", "Organize", "Dance", "Water Plants", "Call a Friend",
+      "Bake", "Play", "Plan", "Paint", "Code", "Walk", "Study", "Relax", "Learn", "Explore", "Write", "Meditate",
+      "Cook", "Cycle", "Listen to Music", "Watch Documentary", "Practice Gratitude", "Yoga", "Declutter Desk",
+      "Fix Something", "Play Instrument", "Take a Nap", "Do Laundry", "Wash Dishes", "Make Bed", "Try Origami",
+      "Make Smoothie", "Sketch Idea", "Check Email", "Backup Files", "Review Goals", "Draw Mandala", "Fold Clothes",
+      "Donate Items", "Stretch Back", "Update Resume", "Read News", "Read a Blog", "Write a Poem", "Practice Typing",
+      "Update Budget", "Organize Photos", "Start a Journal", "Reflect on Day", "Make a To-Do", "Refactor Code",
+      "Refill Water", "Eat a Fruit", "Make Tea", "Fix a Bug", "Write an Idea", "Read a Book Chapter", "Walk Barefoot",
+      "Organize Cables", "Call Parents", "Polish Shoes", "Clean Mirror", "Organize Tabs", "Make Salad", "Water Garden",
+      "Create Playlist", "Check Calendar", "Learn Shortcut", "Practice Breathing", "Stretch Neck", "Do Jumping Jacks",
+      "Tidy Desktop", "Organize Notes", "Doodle", "Write a Letter", "Compliment Someone", "Recycle Trash", "Play Chess",
+      "Check Weather", "Wash Face", "Trim Nails", "Try a Puzzle", "Make Origami", "Take Deep Breaths", "Sort Papers",
+      "Paint Nails", "Brush Pet", "Clean Keyboard", "Charge Devices", "Learn a Fact", "Write Review", "Try Tongue Twister",
+      "Check Finances", "Do Nothing", "Take a Break"
+    ];
+
+    const getRandomTasks = (count: number) => {
+      const shuffled = allPossibleTasks.sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, count);
+    };
+
+    setTasks(getRandomTasks(7));
+  }, []);
 
   const handleAddTask = (task: string) => {
     if (!selectedTask.includes(task)) {
@@ -38,7 +61,17 @@ export default function TaskPage() {
     }
   };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
+    try {
+      await fetch('/api/save-tasks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tasks: selectedTask }),
+      });
+    } catch (e) {
+      console.error("Error saving to Elasticsearch:", e);
+    }
+  
     localStorage.setItem('selectedTasks', JSON.stringify(selectedTask));
     router.push('/dashboard');
   };

@@ -43,6 +43,7 @@ export default function Sidebar() {
         <li onClick={() => router.push( "/profile")}>Profile</li>
           <li onClick={() => router.push("/dashboard")}>Dashboard</li>
           <li onClick={() => router.push("/tasks")}>My Tasks</li>
+          <li onClick={() => router.push( "/history")}>History</li>
           <li onClick={() => router.push("/settings")}>Settings</li>
           <li onClick={handleLogout} className={styles.logout}>Logout</li>
         </ul>
