@@ -101,7 +101,7 @@ export default function TaskPage() {
       <Sidebar />
       {feedbackMessage && <div className={styles.popup}>{feedbackMessage}</div>}
 
-      <h1 className={styles.heading}>Hey {username}, what would you like to do today?</h1>
+      <h1 className={styles.heading}>Hi {username}, your daily adventure starts now!</h1>
 
       <div className={styles.taskList}>
         {tasks.map((task) => (
@@ -133,8 +133,10 @@ export default function TaskPage() {
             />
             <button onClick={handleAddCustomTask} className={styles.button}>Add Task</button>
           </div>
+
         </div>
       )}
+
     </div>
   );
 }

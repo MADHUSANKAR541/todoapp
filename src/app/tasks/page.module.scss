@@ -4,6 +4,9 @@
   margin: 0 auto;
   text-align: center;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 
@@ -32,9 +35,10 @@
   border-radius: 8px;
   font-weight: bold;
   z-index: 999;
-  border: 2px dashed white;
+  border: 2px solid white;
   animation: fadeInOut 2s ease-in-out forwards;
 }
+
 
 @keyframes fadeInOut {
   0% {
@@ -65,7 +69,7 @@
 
 .taskItem {
   background-color: white;
-  border: 2px dashed black;
+  border: 2px solid black;
   border-radius: 10px;
   padding: 1rem;
   width: 150px;
@@ -80,7 +84,7 @@
   background-color: white;
   color: black;
   font-weight: bold;
-  border: 2px dashed black;
+  border: 2px solid black;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
@@ -115,7 +119,7 @@
 .popupCard {
   background: white;
   padding: 2rem;
-  border: 2px dashed black;
+  border: 2px solid black;
   border-radius: 12px;
   width: 90%;
   max-width: 400px;
@@ -132,7 +136,7 @@
   color: white;
   padding: 5px 10px;
   border-radius: 100px;
-  border: 2px dashed white;
+  border: 2px solid white;
   cursor: pointer;
   transition: 0.2s ease;
 }
@@ -149,7 +153,7 @@
   width: 100%;
   padding: 10px;
   margin: 1rem 0;
-  border: 2px dashed black;
+  border: 2px solid black;
   border-radius: 8px;
   font-size: 1rem;
   background-color: white;
@@ -167,7 +171,7 @@
   background-color: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
   font-weight: bold;
-  border: 2px dashed black;
+  border: 2px solid black;
   border-radius: 8px;
   cursor: pointer;
   font-size: 0.95rem;
@@ -192,7 +196,7 @@
     width: 90%;
     background: white;
     padding: 0.75rem 1rem;
-    border-top: 2px dashed black;
+    border-top: 2px solid black;
     display: flex;
     flex-direction: row;
     gap: 0.75rem;
@@ -206,3 +210,4 @@
     margin: 0;
   }
 }
+

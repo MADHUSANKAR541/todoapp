@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { color } from 'three/tsl';
 
 declare global {
   interface Window {
@@ -16,6 +15,7 @@ const GlobeBackground = () => {
 
   useEffect(() => {
     let isMounted = true;
+    let effectInstance: any = null; // local variable for the effect instance
 
     const loadScript = (src: string) =>
       new Promise<void>((resolve) => {
@@ -31,8 +31,9 @@ const GlobeBackground = () => {
       await loadScript('https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js');
 
       if (isMounted && vantaRef.current) {
-        vantaEffect?.destroy();
-        const effectInstance = window.VANTA.GLOBE({
+        if (effectInstance) effectInstance.destroy();
+
+        effectInstance = window.VANTA.GLOBE({
           el: vantaRef.current,
           THREE: window.THREE,
           mouseControls: true,
@@ -40,10 +41,10 @@ const GlobeBackground = () => {
           gyroControls: false,
           scale: 1.0,
           scaleMobile: 1.0,
-          backgroundColor: 0xffffff, // Black background
-          color: 0x000000, 
-          color2:0x000000,// White globe
-          size: 1, // Adjust globe size
+          backgroundColor: 0xffffff,
+          color: 0x000000,
+          color2: 0x000000,
+          size: 1,
         });
 
         setVantaEffect(effectInstance);
@@ -52,9 +53,18 @@ const GlobeBackground = () => {
 
     initializeEffect();
 
+    const handleResize = () => {
+      if (effectInstance) {
+        effectInstance.resize(); // <-- properly call resize
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
     return () => {
       isMounted = false;
-      vantaEffect?.destroy();
+      if (effectInstance) effectInstance.destroy();
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -65,6 +75,7 @@ const GlobeBackground = () => {
         position: 'fixed',
         width: '100%',
         height: '100vh',
+        opacity: 0.5,
         top: 0,
         left: 0,
         zIndex: -1,

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUser, useAuth } from "@clerk/nextjs";
 import styles from "./page.module.scss"; // ✅ Import styles
+import Sidebar from "@/components/sidebar"; // ✅ Import Sidebar component
 
 export default function Settings() {
   const router = useRouter();
@@ -19,6 +20,7 @@ export default function Settings() {
 
   return (
     <div className={styles.settingsContainer}>
+      <Sidebar /> {/* ✅ Include Sidebar component */}
       <h1 className={styles.title}>Settings</h1>
 
       {/* User Profile */}

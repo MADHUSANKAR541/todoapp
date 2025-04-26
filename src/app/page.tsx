@@ -8,10 +8,10 @@ const AnimatedBackground = dynamic(() => import('./back'), { ssr: false });
 
 export default function WelcomePage() {
   const router = useRouter();
-  const { isSignedIn, isLoaded } = useUser(); // ✅ use isLoaded to prevent premature redirect
+  const { isSignedIn, isLoaded } = useUser();
 
   useEffect(() => {
-    if (!isLoaded) return; // ⏳ Wait for auth to load
+    if (!isLoaded) return;
 
     if (isSignedIn) {
       const selectedTasks = JSON.parse(localStorage.getItem("selectedTasks") || "[]");
@@ -32,12 +32,18 @@ export default function WelcomePage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.heading}>Welcome to Your Day!</h1>
-      <div className={styles.buttonWrapper}>
-        <button className={styles.authButton} onClick={handleSignIn}>Sign In</button>
-        <button className={styles.authButton} onClick={handleSignUp}>Sign Up</button>
-      </div>
+      <header className={styles.header}>
+        <div className={styles.logo}>Toodoo</div>
+      </header>
+  
+      <section className={styles.hero}>
+        <h1 className={styles.heading}>Plan Your Moves. Own Your Day. ⚡</h1>
+        <p className={styles.subheading}>Master your schedule with effortless task management built for go-getters.</p>
+        <button className={styles.authButton} onClick={handleSignIn}>Start Your Day</button>
+      </section>
+  
       <AnimatedBackground />
     </div>
   );
+  
 }
