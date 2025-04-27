@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react"
 import {
   ClerkProvider,
   SignInButton,
@@ -29,6 +30,7 @@ export default function RootLayout({
       </head>
       <body >
         {children}
+        <Analytics/> 
       </body>
     </html>
     </ClerkProvider>
