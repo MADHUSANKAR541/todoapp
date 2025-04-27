@@ -209,7 +209,7 @@
     align-items: center;
   }
   .hero {
-    padding-top: 35rem; /* ✨ Push content lower */
+    padding-top: 30rem; /* ✨ Push content lower */
     padding-bottom: 8rem; /* ✨ Give space for button at bottom */
     min-height: auto; /* allow normal height now */
   }
@@ -218,7 +218,6 @@
     position: fixed;
     bottom: 2rem;
     left: 50%;
-    transform: translateX(-50%);
     width: calc(100% - 4rem); /* margin from left and right */
     max-width: 350px;
     padding: 1.2rem;
