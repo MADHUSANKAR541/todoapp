@@ -33,11 +33,12 @@ export default function WelcomePage() {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <div className={styles.logo}>Toodoo</div>
+        
+        <div className={styles.logo}>Teedee</div>
       </header>
   
       <section className={styles.hero}>
-        <h1 className={styles.heading}>Plan Your Moves. Own Your Day. ⚡</h1>
+        <h1 className={styles.heading}>Plan Your Moves,Own Your Day⚡</h1>
         <p className={styles.subheading}>Master your schedule with effortless task management built for go-getters.</p>
         <button className={styles.authButton} onClick={handleSignIn}>Start Your Day</button>
       </section>
