@@ -68,6 +68,7 @@
 }
 
 .taskItem {
+
   background-color: white;
   border: 2px solid black;
   border-radius: 10px;
@@ -188,6 +189,8 @@
 .taskItem button:active {
   transform: scale(0.95);
 }
+
+
 @media (max-width: 768px) {
   .continueWrapper {
     position: fixed;
@@ -203,11 +206,66 @@
     z-index: 999;
   }
 
+    
   .button {
     width: 100%;
     padding: 12px 0;
     font-size: 1rem;
     margin: 0;
   }
+
+  .taskList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    align-items: center;  // Center horizontally
+    justify-content: center;  // Center vertically
+    text-align: center;  // Ensure text is centered within the task items
+  }
+  
+  .taskItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 250px;  // Set a fixed width for task items
+    
+    h2 {
+      font-size: 19px;
+      margin: 0;
+      color: #333;
+    }
+    
+    button {
+      background-color: #050505;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #ffffff;
+      }
+  
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  .heading {
+    padding-top: 20px;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: black;
+  }
+ 
+  
 }
 

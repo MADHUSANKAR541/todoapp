@@ -62,6 +62,8 @@ export default function TaskPage() {
   };
 
   const handleContinue = async () => {
+
+    
     try {
       await fetch('/api/save-tasks', {
         method: 'POST',
@@ -71,9 +73,9 @@ export default function TaskPage() {
     } catch (e) {
       console.error("Error saving to Elasticsearch:", e);
     }
-  
-    localStorage.setItem('selectedTasks', JSON.stringify(selectedTask));
     router.push('/dashboard');
+    localStorage.setItem('selectedTasks', JSON.stringify(selectedTask));
+    
   };
 
   if (!isLoaded) {
