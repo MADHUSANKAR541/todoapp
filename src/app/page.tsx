@@ -34,7 +34,7 @@ export default function WelcomePage() {
     <div className={styles.container}>
       <header className={styles.header}>
         
-        <div className={styles.logo}>Teedee</div>
+        <div className={styles.logo}>Taskify</div>
       </header>
   
       <section className={styles.hero}>
